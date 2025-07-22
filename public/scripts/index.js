@@ -191,9 +191,15 @@ document.querySelector('#show-favorites').addEventListener('click', async () => 
 // Set up logout screen
 
 const setupLogoutScreen = () => {
-    plantGrid.innerHTML = '';
-    logoutScreen.innerHTML = `<h5 class="center-align">Login to view plants</h5>`;
-}
+  plantGrid.innerHTML = '';
+  logoutScreen.innerHTML = `
+    <div class="card-panel center-align" style="margin-top: 50px;">
+      <i class="material-icons large green-text">LovePlants</i>
+      <h5>Login to view your plants</h5>
+      <p class="grey-text">Your garden awaits</p>
+    </div>
+  `;
+};
 
 // Set up UI links
 
