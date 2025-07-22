@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Materialize CSS library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" href="img/icon.png" type="image/png" />
+  <title>LovePlants</title>
+</head>
+<body class="grey lighten-3">
+
+  <!-- Navbar -->
+  <nav class="z-depth-0 grey lighten-4" style="height: 100px; line-height: 100px;">
+    <div class="nav-wrapper container" style="height: 100px;">
+      <a href="#" class="brand-logo" style="display: flex; align-items: center; height: 100%;">
+        <img src="img/logo.png" style="height: 80px;">
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li class="logged-in" style="display: none;">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+          </li>
+          <li class="logged-in" style="display: none;">
+            <a href="#" class="grey-text" id="logout">Logout</a>
+          </li>
+          <li class="admin" style="display: none;">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-create">Add Plant</a>
+          </li>
+          <li class="admin" style="display: none;">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-admin">New Admin</a>
+          </li>
+          <li class="logged-out" style="display: none;">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+          </li>
+          <li class="logged-out" style="display: none;">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+          </li>
+        </span>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Filters -->
+  <div class="nav-wrapper container center-align logged-in" style="margin-top: 1rem; display: none;">
+    <button id="show-all" class="btn grey">Show All</button>
+    <button id="show-favorites" class="btn">Filter Favorites</button>
+  </div>
+
+  <!-- Signup modal -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h4>Sign up</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="signup-bio" required />
+          <label for="signup-bio">Bio</label>
+        </div>
+        <div class="input-field">
+          <input type="number" id="signup-age" required />
+          <label for="signup-age">Age</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Login modal -->
+  <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Account modal -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br />
+      <div class="account-details"></div>
+    </div>
+  </div>
+
+  <!-- Add plant modal -->
+  <div id="modal-create" class="modal">
+    <div class="modal-content">
+      <h4>Add Plant</h4><br />
+      <form id="create-form">
+        <div class="input-field">
+          <input type="text" id="name" required>
+          <label for="name">Plant Name</label>
+        </div>
+        <div class="input-field">
+          <textarea id="description" class="materialize-textarea" required></textarea>
+          <label for="description">Plant Description</label>
+        </div>
+        <div class="input-field">
+          <label for="image" >Plant Image</label>
+          <input type="file" id="image" style="margin-top: 40px;"/>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Create</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit plant modal -->
+  <div id="modal-edit" class="modal">
+  <div class="modal-content">
+      <h4>Edit Plant</h4>
+      <form id="edit-form">
+        <div class="input-field">
+          <input type="text" id="edit-name" required>
+          <label for="edit-name">Name</label>
+        </div>
+        <div class="input-field">
+          <textarea id="edit-description" class="materialize-textarea" required></textarea>
+          <label for="edit-description">Plant Description</label>
+        </div>
+        <button type="submit" class="btn blue">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Make admin modal -->
+  <div id="modal-admin" class="modal">
+    <div class="modal-content">
+      <h4>Make Admin</h4><br />
+      <form id="make-admin-form">
+        <div class="input-field">
+          <input type="email" id="make-admin-email" required />
+          <label for="make-admin-email">Email address</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Make Admin</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Plant grid container -->
+  <div class="container" style="margin-top: 40px;">
+    <div class="plant-grid"></div>
+  </div>
+
+  <!-- Logout screen -->
+  <div class="container" style="margin-top: 40px;">
+    <ul class="collapsible z-depth-0 logout-screen" style="border: none;">
+    </ul>
+  </div>
+
+  <!-- Initialize Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+    import { getStorage } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+    import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-functions.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC613ax7fDAlvJxyls9F67FdESmPmACeys",
+      authDomain: "loveplants-879d8.firebaseapp.com",
+      projectId: "loveplants-879d8",
+      storageBucket: "loveplants-879d8.firebasestorage.app",
+      messagingSenderId: "8629722337",
+      appId: "1:8629722337:web:86a3589ed254448c5e2ba0",
+      measurementId: "G-ED1DD5FRBV"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+    const functions = getFunctions(app);
+
+    window.auth = auth;
+    window.db = db;
+    window.storage = storage;
+    window.functions = functions;
+    window.httpsCallable = httpsCallable;
+  </script>
+  
+  <!-- Materialize library JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Firebase modules -->
+  <script type="module" src="scripts/auth.js"></script>
+  <script type="module" src="scripts/firestore.js"></script>
+  <script type="module" src="scripts/index.js"></script>
+</body>
+</html>
