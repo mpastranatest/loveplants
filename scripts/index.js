@@ -89,8 +89,10 @@ const setupPlants = (data, user) => {
             </label>
           </div>
           ${user && user.admin ? `
-          <button class="btn red delete-btn" data-id="${id}">Eliminar</button>
-          <button class="btn blue edit-btn" data-id="${id}">Editar</button>
+          <div style="margin-top: 10px;">
+            <button class="btn red delete-btn" data-id="${id}">Delete</button>
+            <button class="btn blue edit-btn" data-id="${id}">Edit</button>
+          </div>
           ` : ''}
         </div>
       </div>
